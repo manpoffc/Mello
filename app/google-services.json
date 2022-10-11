@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "46052428820",
+    "project_id": "loginmello",
+    "storage_bucket": "loginmello.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:46052428820:android:e80c6c86f5b6cad94c6b01",
+        "android_client_info": {
+          "package_name": "com.example.mello"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "46052428820-9etdfiav8eul241a16ei4938it3meldd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mello",
+            "certificate_hash": "077f453c28621931444d71b9bcb8defe009dffad"
+          }
+        },
+        {
+          "client_id": "46052428820-hhs4oto2nvsk45pqf5qateeb7564nlti.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBuu95gV8mTueTTn5dBa1WVeewJVplZr0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "46052428820-hhs4oto2nvsk45pqf5qateeb7564nlti.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
