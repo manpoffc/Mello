@@ -9,6 +9,9 @@
     <item android:id="@+id/expense"
         android:icon="@drawable/expense"
         android:title="EXPENSE"/>
+    <item android:id="@+id/logout"
+        android:icon="@drawable/logout"
+        android:title="LOGOUT"/>
 
 
 
