@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "240274261990",
+    "firebase_url": "https://mello-37cbb-default-rtdb.firebaseio.com",
+    "project_id": "mello-37cbb",
+    "storage_bucket": "mello-37cbb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:240274261990:android:577de62716a6d97aabf827",
+        "android_client_info": {
+          "package_name": "com.example.mello"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "240274261990-e79d3i8j5rrffp4858c34ja7lf5gkcli.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4Jcl-_h9H7Fpl7zQUfjbLaqb4w8ctfQM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "240274261990-e79d3i8j5rrffp4858c34ja7lf5gkcli.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
