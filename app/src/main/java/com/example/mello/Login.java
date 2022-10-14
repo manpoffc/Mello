@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,34 +43,10 @@ public class Login extends AppCompatActivity {
         loginNow = findViewById(R.id.loginNowBtn);
         register = findViewById(R.id.loginRegisterBtn);
 
-        String email = emailAddress.getText().toString().trim();
-        String pass = password.getText().toString().trim();
-
-        if(TextUtils.isEmpty(email)){
-            emailAddress.setError("Email Required");
-            return;
-        }
-        if(TextUtils.isEmpty(pass)){
-            password.setError("Password Required");
-            return;
-        }
-
-        mAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
-                    Toast.makeText(getApplicationContext(),"Login Successful",Toast.LENGTH_LONG).show();
-                }else{
-                    Toast.makeText(getApplicationContext(), "Invalid Credentials", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
-
         loginNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                userLogin();
             }
         });
 
@@ -82,5 +59,49 @@ public class Login extends AppCompatActivity {
         });
 
 
+    }
+//Check if login details are correct
+    private void userLogin(){
+        String email = emailAddress.getText().toString().trim();
+        String pass = password.getText().toString().trim();
+
+        if(email.isEmpty()){
+            emailAddress.setError("Email is Required");
+            emailAddress.requestFocus();
+            return;
+        }
+
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+
+            emailAddress.setError("Enter Valid E-mail");
+            emailAddress.requestFocus();
+            return;
+        }
+        if(pass.isEmpty()){
+
+            password.setError("Password is Required");
+            password.requestFocus();
+            return;
+        }
+        if(pass.length()<6){
+
+            password.setError("Password must be 6 characters long");
+            password.requestFocus();
+            return;
+        }
+
+        mAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    //redirect to user dashboard
+                    startActivity(new Intent(Login.this,HomeActivity.class));
+                    finish();
+                }
+                else{
+                    Toast.makeText(Login.this,"Login Failed",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }
