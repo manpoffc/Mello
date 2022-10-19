@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+    <item
+        android:title="Dashboard"
+        android:id="@+id/navigation_dashboard"
+        android:icon="@drawable/ic_baseline_home_24">
+
+    </item>
+
+    <item
+        android:title="Expense"
+        android:id="@+id/navigation_expense"
+        android:icon="@drawable/ic_baseline_attach_money_24">
+
+    </item>
+
+    <item
+        android:title="Income"
+        android:id="@+id/navigation_income"
+        android:icon="@drawable/ic_baseline_account_balance_24">
+
+    </item>
+
+    <item
+        android:title="Log Out"
+        android:id="@+id/navigation_logOut"
+        android:icon="@drawable/ic_baseline_logout_24">
+
+    </item>
+
+    </group>
+</menu>
