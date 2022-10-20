@@ -95,7 +95,7 @@ public class Login extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     //redirect to user dashboard
-                    startActivity(new Intent(Login.this,HomeActivity.class));
+                    startActivity(new Intent(Login.this,MainActivity.class));
                     finish();
                 }
                 else{

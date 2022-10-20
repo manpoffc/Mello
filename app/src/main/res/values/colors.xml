@@ -9,7 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="toolbar_color">#FF03DAC5</color>
 
-<!--    <color name="dashboard_color"></color>-->
+    <color name="dashboard_color"></color>
 
     <color name="income_color">#3F51B5</color>
     <color name="expense_color">#FF81094B</color>

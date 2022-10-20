@@ -18,11 +18,13 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private BottomNavigationItemView bottomNavigationItemView;
+    private BottomNavigationView bottomNavigationView;
     private FrameLayout frameLayout;
 
     //Fragments objects created
@@ -30,18 +32,26 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private IncomeFragment incomeFragment;
     private ExpenseFragment expenseFragment;
 
+
+//    bottomNavigationItemView.setOnItemSelectedListener(item -> {
+//        // do stuff
+//
+//        return true;
+//    });
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home2);
 
         Toolbar toolbar = findViewById(R.id.my_toolbar);
-        setSupportActionBar(toolbar);
         toolbar.setTitle("Mello");
+        setSupportActionBar(toolbar);
 
-        bottomNavigationItemView = findViewById(R.id.bottomNavigationbar);
+        bottomNavigationView = findViewById(R.id.bottomNavigationbar);
         frameLayout=findViewById(R.id.main_frame);
-        
+
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this,drawerLayout,toolbar, R.string.navigation_drawer_open,R.string.navigation_drawer_close
@@ -58,42 +68,49 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         setFragment(dashboardFragment);
 
-//        bottomNavigationItemView.setOnN
-
         navigationView= findViewById(R.id.naView);
         frameLayout=findViewById(R.id.main_frame);
+//        new NavigationView.OnNavigationItemSelectedListener()
+//        bottomNavigationView.setOnItemSelectedListener();
+        bottomNavigationView.setOnItemSelectedListener(item -> {
 
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener()); {
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+            switch (item.getItemId()){
+                case R.id.dashboard:
+                    setFragment(dashboardFragment);
+                    bottomNavigationView.setItemBackgroundResource(R.color.dashboard_color);
+                    return true;
 
-                    case R.id.dasbaord:
-                        setFragment(dashboardFragment);
-                        bottomNavigationItemView.setItemBackgroundResource(R.color.dashboard_color);
-                        return true;
+                case R.id.income:
+                    setFragment(incomeFragment);
+                    bottomNavigationView.setItemBackgroundResource(R.color.income_color);
+                    return true;
 
-                    case R.id.income:
-                        setFragment(incomeFragment);
-                        bottomNavigationItemView.setItemBackgroundResource(R.color.income_color);
-                        return true;
+                case R.id.expense:
+                    setFragment(expenseFragment);
+                    bottomNavigationView.setItemBackgroundResource(R.color.expense_color);
+                    return true;
 
-                    case R.id.expense:
-                        setFragment(expenseFragment);
-                        bottomNavigationItemView.setItemBackgroundResource(R.color.expense_color);
-                        return true;
-
-                    default:
-                        return false;
-                }
+                default:
+                    return false;
             }
-        }
+        });
+//                (new avigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//
+//            }
+//        });
+
+
 
     }
 
+
+
     private void setFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
-        FragmentTransaction.replace(R.id.main_frame, fragment);
-        FragmentTransaction.commit();
+        fragmentTransaction.replace(R.id.main_frame, fragment);
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -138,7 +155,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         displaySelectedListener(item.getItemId());
-        onNavigationItemSelected(item.);
         return true;
     }
 }
