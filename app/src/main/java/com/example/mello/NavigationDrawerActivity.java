@@ -48,18 +48,19 @@ public class NavigationDrawerActivity extends AppCompatActivity {
                 switch (id){
 
                     case R.id.navigation_dashboard:
-
+                        toolbar.setTitle("DASHBOARD");
                         replaceFragment(new DashboardFragment());
                         break;
                     case R.id.navigation_expense:
-
+                        toolbar.setTitle("EXPENSE");
                         replaceFragment(new ExpenseFragment());
                         break;
 
                     case R.id.navigation_income:
-
+                        toolbar.setTitle("INCOME");
                         replaceFragment(new IncomeFragment());
                         break;
+
                     case R.id.navigation_logOut:
 
                         Toast.makeText(NavigationDrawerActivity.this, "Logout",Toast.LENGTH_SHORT).show();

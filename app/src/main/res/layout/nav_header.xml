@@ -2,10 +2,10 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="57dp"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="@color/toolbar_color"
+    android:background="#25316D"
     android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
 
     <TextView
@@ -14,5 +14,5 @@
         android:layout_height="wrap_content"
         android:text="Mello"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/black"/>
+        android:textColor="#FEF5AC"/>
 </LinearLayout>
