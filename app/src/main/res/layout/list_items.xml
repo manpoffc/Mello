@@ -1,32 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="12dp"
-    android:padding="10dp"
-    app:cardElevation="20dp"
-    app:cardCornerRadius="12dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingTop="10dp"
+    android:layout_marginHorizontal="10dp"
     android:foreground="?android:attr/selectableItemBackground">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="20dp">
-        <TextView
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:id="@+id/category"
-            android:text="Category"
-            app:layout_constraintStart_toStartOf="parent"
-            >
 
-        </TextView>
+    <TextView
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:id="@+id/category"
+        android:text="Category"
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
         android:id="@+id/categoryValue"
@@ -34,12 +25,20 @@
         android:layout_height="wrap_content"
         app:layout_constraintRight_toRightOf="parent"
         android:text="Value"
-        android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        >
+        android:gravity="end"
+        android:layout_alignParentEnd="true">
 
     </TextView>
-</androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/grey"
+        android:layout_below="@id/category"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="5dp"/>
+
+
+</RelativeLayout>
