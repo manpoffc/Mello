@@ -24,6 +24,12 @@
         android:icon="@drawable/ic_baseline_account_balance_24">
 
     </item>
+        <item
+            android:title="Group Expense"
+            android:id="@+id/navigation_group_expense"
+            android:icon="@drawable/ic_baseline_account_balance_24">
+
+        </item>
 
     <item
         android:title="Log Out"

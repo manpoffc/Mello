@@ -64,6 +64,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.expense:
                 break;
+            case R.id.groupExpense:
+                break;
         }
 
         if(fragment!=null){
