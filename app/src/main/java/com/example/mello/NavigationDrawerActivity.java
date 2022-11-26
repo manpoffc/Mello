@@ -65,6 +65,8 @@ public class NavigationDrawerActivity extends AppCompatActivity {
 
                         Toast.makeText(NavigationDrawerActivity.this, "Logout",Toast.LENGTH_SHORT).show();
                         break;
+                    case R.id.navigation_group_expense:
+                        replaceFragment(new GroupFragment());
                     default:
                         return true;
 
