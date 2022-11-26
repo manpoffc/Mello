@@ -20,9 +20,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:id="@+id/topAppBar"
-                app:title="Mello"
-                app:titleTextColor="@color/white"
-                app:navigationIcon="@drawable/ic_baseline_menu_24"/>
+                app:title="MELLO"
+                android:background="#25316D"
+                app:titleTextColor="#FEF5AC"
+                android:textSize="30sp"
+                android:fontFamily="sans-serif-medium"
+                app:navigationIcon="@drawable/ic_baseline_menu_24" >
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="end"
+                    android:layout_marginRight="15dp"
+                    android:src="@drawable/ic_baseline_account_balance_wallet_24"/>
+            </com.google.android.material.appbar.MaterialToolbar>
 
 
         </com.google.android.material.appbar.AppBarLayout>

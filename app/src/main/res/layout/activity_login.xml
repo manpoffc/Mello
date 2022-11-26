@@ -9,6 +9,20 @@
     android:background="#25316D"
     tools:context=".Login">
 
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_baseline_account_balance_wallet_24" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MELLO"
+        android:textColor="#FEF5AC"
+        android:textSize="30sp"
+        android:fontFamily="sans-serif-medium"
+        android:layout_marginBottom="70dp"/>
+
     <EditText
         android:id="@+id/loginEmailAddress"
         android:layout_width="match_parent"
@@ -26,14 +40,14 @@
         android:id="@+id/loginPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
-        android:textSize="15sp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:padding="20dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="10dp"
+        android:hint="Password"
+        android:padding="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="15sp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -45,8 +59,7 @@
         android:id="@+id/loginNowBtn"
         android:textColor="#25316D"
         android:padding="10dp"
-        android:backgroundTint="#FEF5AC"
-        />
+        android:backgroundTint="#FEF5AC" />
 
     <LinearLayout
         android:layout_width="match_parent"
