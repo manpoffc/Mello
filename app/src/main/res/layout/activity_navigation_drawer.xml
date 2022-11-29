@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -27,11 +28,23 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
+
        <FrameLayout
            android:layout_width="match_parent"
            android:layout_height="match_parent"
            android:id="@+id/frameLayout"
            android:layout_below="@id/appBarLayout">
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:text="Welcome to Mello!"
+               android:textAlignment="center"
+               android:textSize="40sp"
+               android:textStyle="bold"
+               android:gravity="center"
+               android:textColor="#FF6200EE"/>
+
 
        </FrameLayout>
     </RelativeLayout>
@@ -44,6 +57,7 @@
         app:menu="@menu/my_navigation_drawer"
         android:layout_gravity="start"
         />
+
 
 
 

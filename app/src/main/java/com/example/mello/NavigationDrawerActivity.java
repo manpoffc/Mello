@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,8 +31,9 @@ public class NavigationDrawerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_navigation_drawer);
 
+        setContentView(R.layout.activity_navigation_drawer);
+        //setContentView(R.layout.activity_main);
 
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
@@ -45,6 +47,7 @@ public class NavigationDrawerActivity extends AppCompatActivity {
         });
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -92,6 +95,7 @@ public class NavigationDrawerActivity extends AppCompatActivity {
                 return true;
             }
         });
+
     }
 
     private void replaceFragment(Fragment fragment){
