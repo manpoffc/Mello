@@ -80,6 +80,9 @@ public class NavigationDrawerActivity extends AppCompatActivity {
                     case R.id.navigation_group_expense:
 
                         replaceFragment(new GroupFragment());
+
+                    case R.id.add_expense:
+                        replaceFragment(new InsertExpenseFragment());
                     default:
                         return true;
 
