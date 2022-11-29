@@ -12,7 +12,10 @@
         android:title="Expense"
         android:icon="@drawable/expense"/>
     <item android:id="@+id/groupExpense"
-        android:title="Expense"
+        android:title="Group"
+        android:icon="@drawable/expense"/>
+    <item android:id="@+id/analytics"
+        android:title="Analytics"
         android:icon="@drawable/expense"/>
 
 </menu>

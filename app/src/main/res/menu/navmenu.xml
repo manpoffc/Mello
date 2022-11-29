@@ -13,6 +13,9 @@
     <item android:id="@+id/groupExpense"
         android:icon="@drawable/expense"
         android:title="Group Expense"/>
+    <item android:id="@+id/expenseAnalytics"
+        android:icon="@drawable/expense"
+        android:title="Analytics"/>
     <item android:id="@+id/logout"
         android:icon="@drawable/logout"
         android:title="LOGOUT"/>

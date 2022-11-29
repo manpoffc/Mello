@@ -30,8 +30,15 @@
             android:icon="@drawable/ic_baseline_account_balance_24">
 
         </item>
+        <item
+            android:title="Analytics"
+            android:id="@+id/navigation_analytics"
+            android:icon="@drawable/ic_baseline_account_balance_24">
 
-    <item
+        </item>
+
+
+        <item
         android:title="Log Out"
         android:id="@+id/navigation_logOut"
         android:icon="@drawable/ic_baseline_logout_24">

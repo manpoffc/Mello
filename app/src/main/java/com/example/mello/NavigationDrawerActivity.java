@@ -13,8 +13,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.data.PieEntry;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class NavigationDrawerActivity extends AppCompatActivity {
 
@@ -64,7 +73,12 @@ public class NavigationDrawerActivity extends AppCompatActivity {
 
                         Toast.makeText(NavigationDrawerActivity.this, "Logout",Toast.LENGTH_SHORT).show();
                         break;
+                    case R.id.navigation_analytics:
+
+                        replaceFragment(new Analytics());
+                        break;
                     case R.id.navigation_group_expense:
+
                         replaceFragment(new GroupFragment());
                     default:
                         return true;
@@ -81,6 +95,7 @@ public class NavigationDrawerActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frameLayout,fragment);
+
         fragmentTransaction.commit();
 
 
