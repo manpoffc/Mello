@@ -1,9 +1,14 @@
 package com.example.mello;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,11 +17,14 @@ import android.widget.Button;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +37,7 @@ public class GroupFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private ArrayList<GroupModel> groupModels;
     private Button groupADD;
 
     private DatabaseReference databaseReference;
@@ -37,7 +46,7 @@ public class GroupFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-
+    private DatabaseReference groupDatabaseReference;
     public GroupFragment() {
         // Required empty public constructor
     }
@@ -74,21 +83,61 @@ public class GroupFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_group, container, false);
-        databaseReference= FirebaseDatabase.getInstance().getReference();
 
-        databaseReference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        groupADD= v.findViewById(R.id.btnAddGroupExpense);
+
+        groupADD.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
+            public void onClick(View view) {
+                MyDialogFragment dialogFragment = new MyDialogFragment();
 
-                if(task.isSuccessful()){
-                    DataSnapshot snapshot= task.getResult();
-                    for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-                        System.out.println(dataSnapshot.getValue().toString());
+                dialogFragment.show(getParentFragmentManager(),"MyDialogFragment");
+            }
+        });
+        return v;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerViewAddGroup);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setHasFixedSize(true);
+        groupModels = new ArrayList<>();
+        MyAdapterGroup myAdapter = new MyAdapterGroup(getContext(),groupModels);
+        recyclerView.setAdapter(myAdapter);
+
+        groupDatabaseReference=FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Group");
+        groupDatabaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                groupModels.clear();
+
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    System.out.println(dataSnapshot.child(dataSnapshot.getKey()));
+                    GroupModel groupModel = new GroupModel();
+                    for(DataSnapshot ds: dataSnapshot.getChildren()){
+                        System.out.println(ds.getKey());
+                        if(ds.getKey().equals("currentAmount")){
+                            groupModel.groupId=ds.getValue().toString();
+                        }
+                        else{
+                            groupModel.groupName=ds.getValue().toString();
+                        }
                     }
+
+                    groupModels.add(groupModel);
                 }
+                myAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 
-        return v;
     }
 }

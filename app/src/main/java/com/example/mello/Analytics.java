@@ -40,7 +40,7 @@ public class Analytics extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    public ArrayList <GroupUsers> usersArrayList;
     private   ArrayList <PieEntry> data;
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -95,9 +95,11 @@ public class Analytics extends Fragment {
         textView= (TextView) view.findViewById(R.id.tvchart);
         ArrayList <PieEntry>
                 piechartData = new ArrayList<>();
+
         textView.setText("Herllo");
 
 
+        System.out.println(usersArrayList);
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Expenses");
 
         databaseReference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {

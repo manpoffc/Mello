@@ -3,7 +3,7 @@ package com.example.mello;
 public class User {
 
 
-        public String first_name, last_name, email_id, pass, phone_number;
+        public String first_name, last_name, email_id, pass, phone_number, Expenses,Income, Group;
 
     public User() {
     }
@@ -14,5 +14,6 @@ public class User {
         this.email_id = email_id;
         this.pass = pass;
         this.phone_number = phone_number;
+
     }
 }
