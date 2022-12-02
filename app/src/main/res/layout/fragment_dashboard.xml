@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/frag_dashboard"
     tools:context=".DashboardFragment">
 
-
-
-   <ScrollView
+   <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -24,7 +22,6 @@
             android:layout_marginTop="12dp"
             android:layout_marginEnd="12dp"
             android:layout_marginBottom="12dp"
-            android:text="Dashboard"
             android:textColor="@color/black"
             android:textSize="50sp"
             android:textStyle="bold" />
@@ -77,15 +74,23 @@
                         android:gravity="center">
 
                         <ImageView
-                            android:src="@drawable/ic_home"
+                            android:src="@drawable/ic_baseline_attach_money_24"
                             android:layout_width="80dp"
                             android:layout_height="80dp"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="RENT"
+                            android:text="Income"
+                            android:textStyle="bold"
                             android:textSize="18sp"
                             android:textColor="@color/black"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$000"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:textColor="@color/Income_green"/>
 
                     </LinearLayout>
 
@@ -110,15 +115,21 @@
                         android:gravity="center">
 
                         <ImageView
-                            android:src="@drawable/ic_cab"
+                            android:src="@drawable/ic_baseline_money_off_24"
                             android:layout_width="80dp"
                             android:layout_height="80dp"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="CAB"
+                            android:text="Expense"
                             android:textSize="18sp"
                             android:textColor="@color/black"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$000"
+                            android:textSize="18sp"
+                            android:textColor="@color/expense_red"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -147,128 +158,40 @@
                         android:gravity="center">
 
                         <ImageView
-                            android:src="@drawable/ic_food"
+                            android:src="@drawable/ic_baseline_balance_24"
                             android:layout_width="80dp"
                             android:layout_height="80dp"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="FOOD"
+                            android:text="Balance"
                             android:textSize="18sp"
                             android:textColor="@color/black"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$000"
+                            android:textSize="18sp"
+                            android:textColor="@color/balance_blue"/>
 
                     </LinearLayout>
 
 
                 </androidx.cardview.widget.CardView>
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    app:cardElevation="6dp"
-                    app:cardCornerRadius="12dp"
-                    android:layout_margin="12dp"
-                    >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        android:gravity="center">
-
-                        <ImageView
-                            android:src="@drawable/ic_shopping"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="SHOPPING"
-                            android:textSize="18sp"
-                            android:textColor="@color/black"/>
-
-                    </LinearLayout>
 
 
-                </androidx.cardview.widget.CardView>
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    app:cardElevation="6dp"
-                    app:cardCornerRadius="12dp"
-                    android:layout_margin="12dp"
-                    >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        android:gravity="center">
-
-                        <ImageView
-                            android:src="@drawable/ic_travel"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="TRAVEL"
-                            android:textSize="18sp"
-                            android:textColor="@color/black"/>
-
-                    </LinearLayout>
-
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    app:cardElevation="6dp"
-                    app:cardCornerRadius="12dp"
-                    android:layout_margin="12dp"
-                    >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        android:gravity="center">
-
-                        <ImageView
-                            android:src="@drawable/ic_add_category"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="ADD CATEGORY"
-                            android:textSize="18sp"
-                            android:textColor="@color/black"/>
-
-                    </LinearLayout>
-
-
-                </androidx.cardview.widget.CardView>
 
             </GridLayout>
 
         </LinearLayout>
 
-    </ScrollView>
+    </RelativeLayout>
 
-</FrameLayout>-->
+</FrameLayout>
 
+<!--
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -410,4 +333,4 @@
     </androidx.cardview.widget.CardView>
 
     
-</RelativeLayout>
+</RelativeLayout> -->

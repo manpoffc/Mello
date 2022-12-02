@@ -81,14 +81,22 @@ public class NavigationDrawerActivity extends AppCompatActivity {
                         replaceFragment(new Analytics());
                         break;
                     case R.id.navigation_group_expense:
-
                         replaceFragment(new GroupFragment());
                         break;
+
                     case R.id.add_expense:
                         replaceFragment(new InsertExpenseFragment());
                         break;
+
+                    case R.id.add_income:
+                        replaceFragment(new InsertIncomeFragment());
+                        break;
+
                     default:
-                        replaceFragment(new DashboardFragment());
+                        return true;
+
+
+
 
                 }
 

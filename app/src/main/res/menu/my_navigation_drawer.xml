@@ -44,6 +44,19 @@
 
         </item>
 
+        <item
+            android:title="Add Expense"
+            android:id="@+id/add_expense"
+            android:icon="@drawable/ic_add">
+
+        </item>
+
+        <item
+            android:title="Add Income"
+            android:id="@+id/add_income"
+            android:icon="@drawable/ic_add">
+
+        </item>
 
         <item
         android:title="Log Out"
