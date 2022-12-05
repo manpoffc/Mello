@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <!--tools:context=".HomeActivity"-->
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/NameEditText"
+            android:id="@+id/editname"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -43,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/AmountEditText"
+            android:id="@+id/editamount"
             android:inputType="numberDecimal"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -63,7 +63,7 @@
         app:layout_constraintTop_toBottomOf="@+id/amountInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/DateEditText"
+            android:id="@+id/editdate"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="date" />
@@ -83,37 +83,37 @@
         app:layout_constraintTop_toBottomOf="@+id/DateInputLayout">
 
         <AutoCompleteTextView
-            android:id="@+id/category_autocomplete"
+            android:id="@+id/editcategory"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="none"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/save_button"
+        android:id="@+id/update_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="90dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="20dp"
-        android:text="SAVE"
+        android:text="UPDATE"
         app:cornerRadius="0dp"
-        app:layout_constraintEnd_toStartOf="@+id/cancel_button"
+        app:layout_constraintEnd_toStartOf="@+id/delete_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/groupInputLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/Update_GroupInputLayout" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/cancel_button"
+        android:id="@+id/delete_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="90dp"
-        android:text="CANCEL"
+        android:text="DELETE"
         app:cornerRadius="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/save_button"
-        app:layout_constraintTop_toBottomOf="@+id/groupInputLayout" />
+        app:layout_constraintStart_toEndOf="@+id/update_button"
+        app:layout_constraintTop_toBottomOf="@+id/Update_GroupInputLayout" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/noteInputLayout"
@@ -129,13 +129,13 @@
         app:layout_constraintTop_toBottomOf="@+id/CategoryInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/noteEditText"
+            android:id="@+id/editcomment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <RadioGroup
-        android:id="@+id/radio_group"
+        android:id="@+id/Update_radioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -147,41 +147,40 @@
         app:layout_constraintTop_toBottomOf="@+id/noteInputLayout">
 
         <com.google.android.material.radiobutton.MaterialRadioButton
-            android:id="@+id/individual_button"
+            android:id="@+id/updateIndividual_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:text="Individual" />
 
         <com.google.android.material.radiobutton.MaterialRadioButton
-            android:id="@+id/group_button"
+            android:id="@+id/updateGroup_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:text="Group" />
-
-
     </RadioGroup>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/groupInputLayout"
+        android:id="@+id/Update_GroupInputLayout"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:hint="Select Group"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@+id/radio_group">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Update_radioGroup">
 
         <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:id="@+id/updateGroup_dropdown"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/group_dropdown"
-            android:inputType="none"/>
+            android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout >

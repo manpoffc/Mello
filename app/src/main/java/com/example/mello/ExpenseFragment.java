@@ -1,5 +1,6 @@
 package com.example.mello;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,12 +12,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -37,7 +45,17 @@ public class ExpenseFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private ArrayList<Expense> expenses;
+
+    private EditText edtname,edtamount,edtdate,edtcomment;
+    private AutoCompleteTextView edtcategory;
+    private Button updatebutton;
+    private Button deletebutton;
+    private Button sortbutton;
+
+   // private ArrayList<Expense> expenses;
+    private  ArrayList<ExpenseData> expenses;
+    private  ArrayList<ExpenseData> sortexpenses;
+
     private RecyclerView recyclerView;
     private DatabaseReference databaseReference;
     public ExpenseFragment() {
@@ -87,9 +105,10 @@ public class ExpenseFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
         expenses= new ArrayList<>();
+        sortexpenses= new ArrayList<>();
         MyAdapter myAdapter = new MyAdapter(getContext(),expenses);
         recyclerView.setAdapter(myAdapter);
-
+        sortbutton = view.findViewById(R.id.sortbutton);
         databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Expenses");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -102,8 +121,19 @@ public class ExpenseFragment extends Fragment {
                     System.out.println("KEY_________________"+ dataSnapshot.getKey());
 
                     System.out.println("VALUE_______________"+ dataSnapshot.toString());
-                    Expense exp = new Expense(dataSnapshot.getKey(), Integer.valueOf(dataSnapshot.getValue().toString()));
-                    expenses.add(exp);
+                    //Expense exp = new Expense(dataSnapshot.getKey(), Integer.valueOf(dataSnapshot.getValue().toString()));
+                   // ExpenseData exp = dataSnapshot.getValue(ExpenseData.class);
+                  //  ExpenseData exp1 = new ExpenseData(exp.getName(),exp.getAmount(),exp.getDate(),exp.getCategory(),exp.getComment());
+                    String n = dataSnapshot.child("name").getValue(String.class);
+                    Integer a = dataSnapshot.child("amount").getValue(Integer.class);
+                    String c = dataSnapshot.child("category").getValue(String.class);
+                    String c1 = dataSnapshot.child("comment").getValue(String.class);
+                    String d = dataSnapshot.child("date").getValue(String.class);
+                    String key = dataSnapshot.getKey().toString();
+                    System.out.println(n+a.toString()+c+c1+d);
+                    ExpenseData exp1 = new ExpenseData(n,a,d,c,c1);
+                    exp1.setExpenseID(key);
+                    expenses.add(exp1);
                 }
 
                 myAdapter.notifyDataSetChanged();
@@ -116,6 +146,49 @@ public class ExpenseFragment extends Fragment {
 
             }
         });
+
+        sortbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("inside sort on click");
+                databaseReference=FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Expenses");
+                Query sortquery = databaseReference.orderByChild("amount");
+                sortquery.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        expenses.clear();
+
+                        for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                            System.out.println("KEY_________________"+ dataSnapshot.getKey());
+
+                            System.out.println("VALUE_______________"+ dataSnapshot.toString());
+                            String n = dataSnapshot.child("name").getValue(String.class);
+                            Integer a = dataSnapshot.child("amount").getValue(Integer.class);
+                            String c = dataSnapshot.child("category").getValue(String.class);
+                            String c1 = dataSnapshot.child("comment").getValue(String.class);
+                            String d = dataSnapshot.child("date").getValue(String.class);
+                            System.out.println(n+a.toString()+c+c1+d);
+                            ExpenseData exp1 = new ExpenseData(n,a,d,c,c1);
+                            expenses.add(exp1);
+                        }
+
+                        myAdapter.notifyDataSetChanged();
+
+                    }
+
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+
+            }
+        });
+
 
 
     }
@@ -134,8 +207,17 @@ public class ExpenseFragment extends Fragment {
                 System.out.println("KEY_________________"+ dataSnapshot.getKey());
 
                 System.out.println("VALUE_______________"+ dataSnapshot.toString());
-                Expense exp = new Expense(dataSnapshot.getKey(), Integer.valueOf(dataSnapshot.getValue().toString()));
-                expenses.add(exp);
+               // Expense exp = new Expense(dataSnapshot.getKey(), Integer.valueOf(dataSnapshot.getValue().toString()));
+               // ExpenseData exp = dataSnapshot.getValue(ExpenseData.class);
+               //ExpenseData exp = dataSnapshot.getValue(ExpenseData.class);
+               String n = dataSnapshot.child("name").getValue(String.class);
+               Integer a = dataSnapshot.child("amount").getValue(Integer.class);
+               String c = dataSnapshot.child("category").getValue(String.class);
+               String c1 = dataSnapshot.child("comment").getValue(String.class);
+               String d = dataSnapshot.child("date").getValue(String.class);
+                System.out.println(n+a.toString()+c+c1+d);
+               ExpenseData exp1 = new ExpenseData(n,a,d,c,c1);
+                expenses.add(exp1);
             }
 
         }
@@ -146,6 +228,47 @@ public class ExpenseFragment extends Fragment {
 
         }
     });
+
+    }
+
+    private void updateExpenseItem(){
+        AlertDialog.Builder mydialog = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater =LayoutInflater.from(getActivity());
+        View myView = inflater.inflate(R.layout.update_expense,null);
+        System.out.println("inflated view");
+        mydialog.setView(myView);
+        System.out.println("dialog set view");
+
+        edtname=myView.findViewById(R.id.editname);
+        edtamount=myView.findViewById(R.id.editamount);
+        edtdate=myView.findViewById(R.id.editdate);
+        edtcategory=myView.findViewById(R.id.editcategory);
+        edtcomment=myView.findViewById(R.id.editcomment);
+
+        updatebutton=myView.findViewById(R.id.update_button);
+        deletebutton=myView.findViewById(R.id.delete_button);
+
+        AlertDialog dialog = mydialog.create();
+
+        updatebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+
+        deletebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                dialog.dismiss();
+            }
+        });
+
+
+        dialog.show();
+
 
     }
 }

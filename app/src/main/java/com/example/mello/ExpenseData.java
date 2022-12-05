@@ -10,6 +10,16 @@ public class ExpenseData {
     String Category;
     String Comment;
 
+    public String getExpenseID() {
+        return ExpenseID;
+    }
+
+    public void setExpenseID(String expenseID) {
+        ExpenseID = expenseID;
+    }
+
+    String ExpenseID;
+
 
     public ExpenseData(String name, Integer amount, String date, String category, String comment) {
         Name = name;
