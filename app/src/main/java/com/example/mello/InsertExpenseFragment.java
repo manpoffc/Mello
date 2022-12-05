@@ -245,7 +245,16 @@ public class InsertExpenseFragment extends Fragment {
                     groupID= groups.getGroupModelArrayList().get(i).groupId;
                 }
             }
-            FirebaseDatabase.getInstance().getReference("Groups").child(groupID).child("TotalAmount").setValue(edtAmount.getText().toString());
+            userExpenseReference= FirebaseDatabase.getInstance().getReference("Groups").child(groupID).child("TotalAmount");
+           userExpenseReference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+               @Override
+               public void onComplete(@NonNull Task<DataSnapshot> task) {
+                   if(task.isSuccessful()){
+                        DataSnapshot ds= task.getResult();
+                       userExpenseReference.setValue(Integer.valueOf(edtAmount.getText().toString())+Integer.valueOf(ds.getValue().toString()));
+                   }
+               }
+           });
 
             System.out.println("GROUPS ID@@@@@@@@@@@@@@@"+ groupID);
 
@@ -271,10 +280,31 @@ public class InsertExpenseFragment extends Fragment {
                                 System.out.println("FINAL AMOUNT&&&&&&&&"+ FinalAmount);
                                 FirebaseDatabase.getInstance().getReference("Users").child(usm.get(i).userID).child("Expenses").child(expenseId)
                                         .setValue(exp);
+                                userExpenseReference=FirebaseDatabase.getInstance().getReference("Users").child(usm.get(i).userID).child("Group").child(groupID).child("currentAmount");
+
+                                userExpenseReference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                        if(task.isSuccessful()){
+                                            DataSnapshot ds= task.getResult();
+                                            userExpenseReference.setValue(FinalAmount+Integer.valueOf(ds.getValue().toString()));
+                                        }
+                                    }
+                                });
                             }
                             else {
-                                FirebaseDatabase.getInstance().getReference("Users").child(usm.get(i).userID).child("Group").child(groupID).child("currentAmount").setValue(Integer.valueOf(edtAmount.getText().toString()) / (usm.size()));
-
+                                userExpenseReference=FirebaseDatabase.getInstance().getReference("Users").child(usm.get(i).userID).child("Group").child(groupID).child("currentAmount");
+                                userExpenseReference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                        if(task.isSuccessful()){
+                                            int currentValue= (Integer.valueOf(edtAmount.getText().toString()) / (usm.size()));
+                                            DataSnapshot ds= task.getResult();
+                                            System.out.println(ds.getValue().toString()+"####################");
+                                            userExpenseReference.setValue(currentValue+Integer.valueOf(ds.getValue().toString()));
+                                        }
+                                    }
+                                });
                                 FirebaseDatabase.getInstance().getReference("Users").child(usm.get(i).userID).child("Expenses").child(expenseId)
                                         .setValue(expense);
                             }
