@@ -8,12 +8,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.github.mikephil.charting.data.PieEntry;
+//import com.github.mikephil.charting.data.PieEntry;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,13 +28,15 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class NavigationDrawerActivity extends AppCompatActivity {
-
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_navigation_drawer);
+        //setContentView(R.layout.fragment_dashboard);
 
-
+        mAuth = FirebaseAuth.getInstance();
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.navigation_view);
@@ -45,6 +49,7 @@ public class NavigationDrawerActivity extends AppCompatActivity {
         });
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -69,9 +74,11 @@ public class NavigationDrawerActivity extends AppCompatActivity {
 
                         replaceFragment(new IncomeFragment());
                         break;
+
                     case R.id.navigation_logOut:
 
-                        Toast.makeText(NavigationDrawerActivity.this, "Logout",Toast.LENGTH_SHORT).show();
+                        mAuth.signOut();
+                        startActivity(new Intent(getApplicationContext(),Login.class));
                         break;
                     case R.id.navigation_analytics:
 
@@ -86,6 +93,7 @@ public class NavigationDrawerActivity extends AppCompatActivity {
                         replaceFragment(new InsertExpenseFragment());
                         break;
 
+
                     default:
                         return true;
 
@@ -94,6 +102,7 @@ public class NavigationDrawerActivity extends AppCompatActivity {
                 return true;
             }
         });
+
     }
 
     private void replaceFragment(Fragment fragment){

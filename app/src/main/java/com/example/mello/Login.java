@@ -32,6 +32,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        //setContentView(R.layout.activity_main);
 
         mAuth = FirebaseAuth.getInstance(); //
         loginDetails(); //
@@ -64,7 +65,7 @@ public class Login extends AppCompatActivity {
     private void userLogin(){
         String email = emailAddress.getText().toString().trim();
         String pass = password.getText().toString().trim();
-
+        System.out.println(pass+"*******");
         if(email.isEmpty()){
             emailAddress.setError("Email is Required");
             emailAddress.requestFocus();

@@ -1,9 +1,6 @@
 package com.example.mello;
 
-import java.util.Date;
-
-public class ExpenseData {
-
+public class IncomeData {
     String Name;
     Integer Amount;
     String Date;
@@ -11,19 +8,7 @@ public class ExpenseData {
     String Comment;
 
 
-    public String getExpenseID() {
-        return ExpenseID;
-    }
-
-    public void setExpenseID(String expenseID) {
-        ExpenseID = expenseID;
-    }
-
-    String ExpenseID;
-
-
-
-    public ExpenseData(String name, Integer amount, String date, String category, String comment) {
+    public IncomeData(String name, Integer amount, String date, String category, String comment) {
         Name = name;
         Amount = amount;
         Date = date;
@@ -43,8 +28,6 @@ public class ExpenseData {
         return Amount;
     }
 
-    public ExpenseData(){};
-
     public void setAmount(Integer amount) {
         Amount = amount;
     }
@@ -52,6 +35,8 @@ public class ExpenseData {
     public String getDate() {
         return Date;
     }
+
+    public IncomeData() {};
 
     public void setDate(String date) {
         Date = date;
@@ -68,6 +53,7 @@ public class ExpenseData {
     public String getComment() {
         return Comment;
     }
+
 
     public void setComment(String comment) {
         Comment = comment;
