@@ -1,5 +1,6 @@
 package com.example.mello;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -9,23 +10,22 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import java.util.UUID;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.text.DateFormat;
-import java.util.Date;
 
 public class InsertExpenseFragment extends Fragment {
 
@@ -35,14 +35,12 @@ public class InsertExpenseFragment extends Fragment {
    // String[] categories = new String[]{"Food","Entertainment","Car","Fuel"};
     AutoCompleteTextView categoryAuto;
     TextInputLayout textInputLayout;
+    TextInputLayout groupInputLayout;
     String[] categories = {"Food","Entertainment","Car","Fuel"};
     ArrayAdapter<String> adapterItems;
-
-
-    private FirebaseAuth mAuth;
+    public String expenseId;
 
     private DatabaseReference mExpenseReference;
-    FirebaseDatabase firebasedatabase;
 
     ExpenseData expense;
 
@@ -52,6 +50,10 @@ public class InsertExpenseFragment extends Fragment {
     EditText edtCategory;
     EditText edtComment;
     MaterialButton save;
+    MaterialButton cancel;
+    RadioButton groupRadioBtn;
+    RadioButton individualRadioBtn;
+
 
 
     private String mParam1;
@@ -77,8 +79,6 @@ public class InsertExpenseFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-        
     }
 
     @Nullable
@@ -87,6 +87,7 @@ public class InsertExpenseFragment extends Fragment {
         return inflater.inflate(R.layout.inser_expense, container, false);
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -99,8 +100,11 @@ public class InsertExpenseFragment extends Fragment {
 
         categoryAuto = view.findViewById(R.id.category_autocomplete);
         textInputLayout=view.findViewById(R.id.CategoryInputLayout);
+        groupRadioBtn = view.findViewById(R.id.group_button);
+        groupInputLayout = view.findViewById(R.id.groupInputLayout);
+        individualRadioBtn =view.findViewById(R.id.individual_button);
 
-        adapterItems=new ArrayAdapter<>(getContext(),R.layout.list_categories,categories);
+        adapterItems=new ArrayAdapter<>(getContext(),R.layout.list_categories, categories);
 
         categoryAuto.setAdapter(adapterItems);
 
@@ -111,11 +115,21 @@ public class InsertExpenseFragment extends Fragment {
             }
         });
 
+        groupRadioBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                groupInputLayout.setVisibility(0);
+            }
+        });
 
-       // mAuth=FirebaseAuth.getInstance();
-       // FirebaseUser mUser = mAuth.getCurrentUser();
-       // String uid = mUser.getUid();
-       // mExpenseReference = FirebaseDatabase.getInstance().getReference().child("Expenses").child(uid);
+        individualRadioBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(groupInputLayout.getVisibility()==0){
+                    groupInputLayout.setVisibility(8);
+                }
+            }
+        });
 
         save = view.findViewById(R.id.save_button);
         save.setOnClickListener(new View.OnClickListener() {
@@ -125,7 +139,16 @@ public class InsertExpenseFragment extends Fragment {
             }
         });
 
-
+        cancel=view.findViewById(R.id.cancel_button);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction transact = getParentFragmentManager().beginTransaction();
+                transact.replace(getId(),ExpenseFragment.class,null);
+                System.out.println("After replace code");
+                transact.commit();
+            }
+        });
 
 
     }
@@ -150,12 +173,19 @@ public class InsertExpenseFragment extends Fragment {
         int amountInt = Integer.parseInt(amount);
 
         ExpenseData expense = new ExpenseData(name,amountInt,date,category,comment);
-        //mExpenseReference.setValue(expense);
-        mExpenseReference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Expenses");
-        mExpenseReference.push().setValue(expense).addOnSuccessListener(new OnSuccessListener<Void>() {
+        expenseId=UUID.randomUUID().toString();
+        expense.setExpenseID(expenseId);
+
+        mExpenseReference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Expenses").child(expenseId);
+        mExpenseReference.setValue(expense).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 Toast.makeText(getContext(),"uploaded",Toast.LENGTH_SHORT).show();
+                FragmentTransaction transact = getParentFragmentManager().beginTransaction();
+                transact.replace(getId(),ExpenseFragment.class,null);
+                System.out.println("After replace code");
+                transact.commit();
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -163,7 +193,6 @@ public class InsertExpenseFragment extends Fragment {
                 Toast.makeText(getContext(),"Error!",Toast.LENGTH_SHORT).show();
             }
         });
-
 
     }
 }

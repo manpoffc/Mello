@@ -93,9 +93,6 @@ public class NavigationDrawerActivity extends AppCompatActivity {
                         replaceFragment(new InsertExpenseFragment());
                         break;
 
-                    case R.id.add_income:
-                        replaceFragment(new InsertIncomeFragment());
-                        break;
 
                     default:
                         return true;
