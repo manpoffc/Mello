@@ -93,7 +93,6 @@ public class NavigationDrawerActivity extends AppCompatActivity {
                         replaceFragment(new InsertExpenseFragment());
                         break;
 
-
                     default:
                         return true;
 

@@ -130,7 +130,7 @@ public class ExpenseFragment extends Fragment {
                     String c1 = dataSnapshot.child("comment").getValue(String.class);
                     String d = dataSnapshot.child("date").getValue(String.class);
                     String key = dataSnapshot.getKey().toString();
-                    System.out.println(n+a.toString()+c+c1+d);
+
                     ExpenseData exp1 = new ExpenseData(n,a,d,c,c1);
                     exp1.setExpenseID(key);
                     expenses.add(exp1);
