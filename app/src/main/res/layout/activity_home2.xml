@@ -10,12 +10,13 @@
 
     <include layout="@layout/appbar_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        />
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:itemIconTint="@color/toolbar_color"
+        app:itemIconTint="#FF6200EE"
         android:layout_gravity="start"
         app:itemTextAppearance="@style/TextAppearance.AppCompat.Small"
         android:id="@+id/naView"
@@ -26,3 +27,4 @@
     </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>
+

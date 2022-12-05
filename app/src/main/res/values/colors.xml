@@ -8,4 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="toolbar_color">#FF03DAC5</color>
+    <color name="Income_green">#54AC07</color>
+    <color name="expense_red">#C61A2E</color>
+    <color name="balance_blue">#088AF1</color>
+
 </resources>
