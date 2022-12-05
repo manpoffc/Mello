@@ -65,7 +65,7 @@ public class Login extends AppCompatActivity {
     private void userLogin(){
         String email = emailAddress.getText().toString().trim();
         String pass = password.getText().toString().trim();
-
+        System.out.println(pass+"*******");
         if(email.isEmpty()){
             emailAddress.setError("Email is Required");
             emailAddress.requestFocus();

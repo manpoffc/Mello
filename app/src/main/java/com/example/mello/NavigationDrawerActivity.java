@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,14 +28,15 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class NavigationDrawerActivity extends AppCompatActivity {
-
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_navigation_drawer);
-        //setContentView(R.layout.activity_main);
+        //setContentView(R.layout.fragment_dashboard);
 
+        mAuth = FirebaseAuth.getInstance();
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.navigation_view);
@@ -72,15 +74,18 @@ public class NavigationDrawerActivity extends AppCompatActivity {
 
                         replaceFragment(new IncomeFragment());
                         break;
+
                     case R.id.navigation_logOut:
 
-                        Toast.makeText(NavigationDrawerActivity.this, "Logout",Toast.LENGTH_SHORT).show();
+                        mAuth.signOut();
+                        startActivity(new Intent(getApplicationContext(),Login.class));
                         break;
                     case R.id.navigation_analytics:
 
                         replaceFragment(new Analytics());
                         break;
                     case R.id.navigation_group_expense:
+
                         replaceFragment(new GroupFragment());
                         break;
 
@@ -94,9 +99,6 @@ public class NavigationDrawerActivity extends AppCompatActivity {
 
                     default:
                         return true;
-
-
-
 
                 }
 

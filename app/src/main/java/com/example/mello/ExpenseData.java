@@ -10,7 +10,6 @@ public class ExpenseData {
     String Category;
     String Comment;
 
-
     public ExpenseData(String name, Integer amount, String date, String category, String comment) {
         Name = name;
         Amount = amount;
@@ -30,6 +29,8 @@ public class ExpenseData {
     public Integer getAmount() {
         return Amount;
     }
+
+    public ExpenseData(){};
 
     public void setAmount(Integer amount) {
         Amount = amount;
