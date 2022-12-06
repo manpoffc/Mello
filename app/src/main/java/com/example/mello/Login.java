@@ -2,6 +2,8 @@ package com.example.mello;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -95,6 +97,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+                    System.out.println("inside on complete");
                     //redirect to user dashboard
                     startActivity(new Intent(Login.this,NavigationDrawerActivity.class));
                     finish();

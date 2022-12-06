@@ -44,7 +44,7 @@ public class InsertExpenseFragment extends Fragment {
     AutoCompleteTextView categoryAuto, groupAuto;
     TextInputLayout textInputLayout;
     TextInputLayout groupInputLayout;
-    String[] categories = {"Food","Entertainment","Car","Fuel"};
+    String[] categories = {"Food","Entertainment","Car","Fuel","Insurance","Clothes","Services","Gifts","Bills","Education","Liquor","Rent","Other"};
     String[] groupCategories;
     ArrayAdapter<String> adapterItems,groupItems;
     public String expenseId;

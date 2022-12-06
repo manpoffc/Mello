@@ -11,6 +11,8 @@ import androidx.fragment.app.FragmentTransaction;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -34,6 +36,7 @@ public class NavigationDrawerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_navigation_drawer);
+
         //setContentView(R.layout.fragment_dashboard);
 
         mAuth = FirebaseAuth.getInstance();
@@ -93,8 +96,13 @@ public class NavigationDrawerActivity extends AppCompatActivity {
                         replaceFragment(new InsertExpenseFragment());
                         break;
 
+                    case R.id.add_income:
+                        replaceFragment(new InsertIncomeFragment());
+                        break;
+
                     default:
-                        return true;
+                        new DashboardFragment();
+                        break;
 
                 }
 
@@ -104,6 +112,7 @@ public class NavigationDrawerActivity extends AppCompatActivity {
 
     }
 
+
     private void replaceFragment(Fragment fragment){
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -111,8 +120,6 @@ public class NavigationDrawerActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frameLayout,fragment);
 
         fragmentTransaction.commit();
-
-
 
     }
 

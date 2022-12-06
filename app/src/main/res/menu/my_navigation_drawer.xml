@@ -30,12 +30,6 @@
             android:icon="@drawable/ic_baseline_account_balance_24">
 
         </item>
-        <item
-            android:title="Add Expense"
-            android:id="@+id/add_expense"
-            android:icon="@drawable/expense">
-
-        </item>
 
         <item
             android:title="Analytics"
@@ -44,7 +38,12 @@
 
         </item>
 
+        <item
+            android:title="Add Expense"
+            android:id="@+id/add_expense"
+            android:icon="@drawable/ic_add">
 
+        </item>
 
 
         <item
