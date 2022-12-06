@@ -18,12 +18,6 @@
 
     </item>
 
-    <item
-        android:title="Income"
-        android:id="@+id/navigation_income"
-        android:icon="@drawable/ic_baseline_account_balance_24">
-
-    </item>
         <item
             android:title="Group Expense"
             android:id="@+id/navigation_group_expense"
@@ -31,12 +25,6 @@
 
         </item>
 
-        <item
-            android:title="Analytics"
-            android:id="@+id/navigation_analytics"
-            android:icon="@drawable/ic_baseline_account_balance_24">
-
-        </item>
 
         <item
             android:title="Add Expense"

@@ -7,6 +7,15 @@ public class IncomeData {
     String Category;
     String Comment;
 
+    public String getIncomeID() {
+        return IncomeID;
+    }
+
+    public void setIncomeID(String expenseID) {
+        IncomeID = expenseID;
+    }
+
+    String IncomeID;
 
     public IncomeData(String name, Integer amount, String date, String category, String comment) {
         Name = name;
