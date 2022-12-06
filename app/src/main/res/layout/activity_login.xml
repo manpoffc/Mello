@@ -7,6 +7,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:background="#25316D"
+    android:id="@+id/loginlinearlayout"
     tools:context=".Login">
 
     <EditText

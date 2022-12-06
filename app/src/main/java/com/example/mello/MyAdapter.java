@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
 
     Context context;
     String name;
@@ -46,7 +48,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     //For categories in update dialog box
     ArrayAdapter<String> adapterItems;
-    String[] categories = {"Food","Entertainment","Car","Fuel"};
+    String[] categories = {"Food","Entertainment","Car","Fuel","Insurance","Clothes","Services","Gifts","Bills","Education","Liquor","Rent","Other"};
 
     public MyAdapter(Context context, ArrayList<ExpenseData> expensedata) {
 
@@ -83,7 +85,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             public void onClick(View view) {
                 name = holder.name.getText().toString();
                 amt = holder.amount.getText().toString();
-                date = holder.amount.getText().toString();
+                date = holder.date.getText().toString();
                 category = holder.category.getText().toString();
                 comment = holder.comment.getText().toString();
                 System.out.println(expense.getExpenseID()+"inside onclick");
@@ -112,7 +114,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         groupButton = view1.findViewById(R.id.updateGroup_button);
         updateGroupDropdown=view1.findViewById(R.id.Update_GroupInputLayout);
         adapterItems = new ArrayAdapter<>(view1.getContext(), R.layout.list_categories,categories);
-
 
         edtname.setText(name);
         edtamount.setText(amt);
@@ -186,6 +187,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public int getItemCount() {
         return expensedata.size();
     }
+
+
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 

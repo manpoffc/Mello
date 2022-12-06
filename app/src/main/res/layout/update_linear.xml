@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/lname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NAme" />
+
+    <TextView
+        android:id="@+id/lamt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Amount" />
+
+    <TextView
+        android:id="@+id/ldate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="date" />
+
+    <TextView
+        android:id="@+id/lcategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="category" />
+
+    <TextView
+        android:id="@+id/lcomment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="comment" />
+</LinearLayout>
