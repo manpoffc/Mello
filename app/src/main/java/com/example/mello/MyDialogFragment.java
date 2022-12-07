@@ -149,7 +149,7 @@ public class MyDialogFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
 
-                System.out.println("Dialog Fragment" + groupAccess.getGroupUsers().get(0).userID);
+                //System.out.println("Dialog Fragment" + groupAccess.getGroupUsers().get(0).userID);
                 getDialog().dismiss();
             }
         });

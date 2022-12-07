@@ -11,10 +11,11 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Toast;
-
+import java.util.UUID;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -27,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 public class InsertIncomeFragment extends Fragment {
 
@@ -40,7 +42,7 @@ public class InsertIncomeFragment extends Fragment {
 
     ArrayAdapter<String> adapterItems;
 
-
+    public String incomeId;
     private FirebaseAuth mAuth;
 
     private DatabaseReference mIncomeReference;
@@ -54,6 +56,7 @@ public class InsertIncomeFragment extends Fragment {
     EditText edtCategory;
     EditText edtComment;
     MaterialButton save;
+    MaterialButton cancel;
 
 
     private String mParam1;
@@ -61,6 +64,8 @@ public class InsertIncomeFragment extends Fragment {
     public InsertIncomeFragment() {
 
     }
+
+
 
     public static InsertIncomeFragment newInstance(String param1, String param2) {
         InsertIncomeFragment fragment = new InsertIncomeFragment();
@@ -125,6 +130,17 @@ public class InsertIncomeFragment extends Fragment {
             }
         });
 
+        cancel=view.findViewById(R.id.cancel_button);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transact = getParentFragmentManager().beginTransaction();
+                transact.replace(getId(),DashboardFragment.class,null);
+                System.out.println("After replace code");
+                transact.commit();
+            }
+        });
+
 
 
 
@@ -148,11 +164,12 @@ public class InsertIncomeFragment extends Fragment {
         }
 
         int amountInt = Integer.parseInt(amount);
+        incomeId= UUID.randomUUID().toString();
 
         IncomeData income = new IncomeData(name,amountInt,date,category,comment);
-
-        mIncomeReference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Income");
-        mIncomeReference.push().setValue(income).addOnSuccessListener(new OnSuccessListener<Void>() {
+        income.setIncomeID(incomeId);
+        mIncomeReference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Income").child(incomeId);
+        mIncomeReference.setValue(income).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 Toast.makeText(getContext(),"uploaded",Toast.LENGTH_SHORT).show();

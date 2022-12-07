@@ -60,7 +60,7 @@ public class ExpenseFragment extends Fragment {
     private FloatingActionButton sortbutton;
 
     private FloatingActionButton filterButton;
-    private RadioButton foodbutton,fuelbutton,entertainmentbutton,carbutton,clothesbtn,servicebtn,giftsbtn,billsbtn,educationbtn,liquorbtn,rentbtn,othersbtn;
+    private RadioButton foodbutton,fuelbutton,entertainmentbutton,carbutton,clothesbtn,servicebtn,giftsbtn,billsbtn,educationbtn,liquorbtn,rentbtn,othersbtn,insurancebtn;
     private String selectedFilter;
 
    // private ArrayList<Expense> expenses;
@@ -333,19 +333,24 @@ public class ExpenseFragment extends Fragment {
         educationbtn=myView.findViewById(R.id.education_radio);
         liquorbtn=myView.findViewById(R.id.liquor_radio);
         rentbtn=myView.findViewById(R.id.rent_radio);
-        othersbtn=myView.findViewById(R.id.rent_radio);
+        othersbtn=myView.findViewById(R.id.others_radio);
+        insurancebtn = myView.findViewById(R.id.insurance_radio);
 
         foodbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 filterList("food");
+                dialog.dismiss();
             }
+
         });
 
         fuelbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 filterList("fuel");
+                dialog.dismiss();
 
             }
         });
@@ -354,6 +359,16 @@ public class ExpenseFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 filterList("car");
+                dialog.dismiss();
+
+            }
+        });
+
+        insurancebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filterList("insurance");
+                dialog.dismiss();
 
             }
         });
@@ -362,6 +377,7 @@ public class ExpenseFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 filterList("entertainment");
+                dialog.dismiss();
 
             }
         });
@@ -369,56 +385,72 @@ public class ExpenseFragment extends Fragment {
         clothesbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 filterList("clothes");
+                dialog.dismiss();
             }
         });
 
         servicebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 filterList("services");
+                dialog.dismiss();
             }
         });
 
         giftsbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 filterList("gifts");
+                dialog.dismiss();
             }
         });
 
         billsbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 filterList("bill");
+                dialog.dismiss();
             }
         });
 
         educationbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 filterList("education");
+                dialog.dismiss();
             }
         });
 
         liquorbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 filterList("liquor");
+                dialog.dismiss();
             }
         });
 
         rentbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 filterList("rent");
+                dialog.dismiss();
             }
         });
 
         othersbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                filterList("others");
+
+                filterList("other");
+                dialog.dismiss();
             }
         });
         dialog.show();

@@ -73,20 +73,13 @@ public class NavigationDrawerActivity extends AppCompatActivity {
                         replaceFragment(new ExpenseFragment());
                         break;
 
-                    case R.id.navigation_income:
-
-                        replaceFragment(new IncomeFragment());
-                        break;
 
                     case R.id.navigation_logOut:
 
                         mAuth.signOut();
                         startActivity(new Intent(getApplicationContext(),Login.class));
                         break;
-                    case R.id.navigation_analytics:
 
-                        replaceFragment(new Analytics());
-                        break;
                     case R.id.navigation_group_expense:
 
                         replaceFragment(new GroupFragment());
